@@ -4,6 +4,8 @@ Small CLI utility for calculating all possibilities given T9 input.
 
 Does not account for multiple presses... `66` -> `[MNO6][MNO6]` not `N`.
 
+Intended for 64bit processors, not particularly fast when checking wordlist. 
+
 C99 compliant.
 
 ```
@@ -30,4 +32,11 @@ GGTGTB
 
 $t9 -e 534 448482
 GITHUB
+```
+
+```
+[1    ] [ABC2]  [DEF3 ]
+[GHI4 ] [JKL5]  [MNO6 ]
+[PQRS7] [TUV8]  [WXYZ9]
+        [  9 ] <- space and 9
 ```
