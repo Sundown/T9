@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
     fp = fopen(dict_path, "r");
 
     if (!fp) {
-      fprintf(stderr, "Failed to open dictionary: %s\n", dict_path);
+      fprintf(stderr, "t9: error: failed to open dictionary: %s\n", dict_path);
       exit(1);
     }
   }
@@ -161,7 +161,7 @@ int main(int argc, char** argv) {
   char* input = clean_string(str);
 
   if (strlen(input) < 1) {
-    fprintf(stderr, "buttonMash: error: input string empty.");
+    fprintf(stderr, "t9: error: input string empty.");
     exit(1);
   }
 
