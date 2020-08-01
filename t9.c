@@ -23,13 +23,22 @@ const char* dict[10] = {
   "PQRS7",  "TUV8",   "WXYZ9"
 };
 
-uint64_t entry, iter;
-_Bool dictOn = 0, show_entry = 0, select_entry = 0;
 FILE* fp = NULL;
 size_t len = 0;
-char* line = NULL;
-char* dict_path = "/usr/share/dict/words";
-bool match_full = false;
+
+uint64_t
+  entry,
+  iter;
+
+bool
+  match_full,
+  dict_on,
+  show_entry,
+  select_entry;
+
+char
+  *line = NULL,
+  *dict_path = "/usr/share/dict/words";
 
 void print_entry(char* string) {
   if (!(entry != ++iter && select_entry)) {
@@ -78,7 +87,7 @@ void t9_apply(char array[], uint64_t pos, char* input) {
     array[pos] = set[i];
 
     if (pos == strlen(array) - 1) {
-      dictOn
+      dict_on
         ? check_dict(array)
         : print_entry(array);
     } else {
@@ -116,18 +125,18 @@ int main(int argc, char** argv) {
       switch (argv[i][1]) {
         case 'd': {
           if (argv[i][2] == 'f') { match_full = true; }
-          dictOn = 1;
+          dict_on = true;
           continue;
         } case 'e': {
-          select_entry = 1;
+          select_entry = true;
           entry = (uint64_t)atoi(argv[++i]);
           continue;
         } case 'w': {
           dict_path = argv[++i];
-          dictOn = 1;
+          dict_on = true;
           continue;
         } case 'i': {
-          show_entry = 1;
+          show_entry = true;
           continue;
         } case 'h': {
           puts(help);
@@ -140,7 +149,7 @@ int main(int argc, char** argv) {
     }
   }
 
-  if (dictOn) {
+  if (dict_on) {
     fp = fopen(dict_path, "r");
 
     if (!fp) {
@@ -163,7 +172,7 @@ int main(int argc, char** argv) {
 
   t9_apply(bus, 0, input);
 
-  if (dictOn) { fclose(fp); }
+  if (dict_on) { fclose(fp); }
 
   return 0;
 }
