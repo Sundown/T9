@@ -4,7 +4,7 @@ Small CLI utility for calculating all possibilities given T9 input.
 
 Does not account for multiple presses... `66` -> `[MNO6][MNO6]` not `N`.
 
-Intended for 64bit processors, not particularly fast when checking wordlist. 
+Not particularly fast when checking wordlist. 
 
 C99 compliant.
 
